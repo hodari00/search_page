@@ -55,7 +55,7 @@ var Burlington = function() {
 
         // Filter by name / email
         that.Filtered = jQuery.grep(that.Filtered , function (value) {
-                        return (value.full_name.toLowerCase().includes(that.Query.toLowerCase()) &&
+                        return (value.full_name.toLowerCase().includes(that.Query.toLowerCase()) ||
                         value.email.toLowerCase().includes(that.Query.toLowerCase())) ;
         });
 
