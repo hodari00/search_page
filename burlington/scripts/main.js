@@ -19,8 +19,6 @@ var Burlington = function() {
 
         for(I in that.CustomersList) {
 
-            console.log(that.CountriesFilter);
-
             if (that.CountriesFilter.length <= 0 && that.CitiesFilter.length <= 0) {
 
                 if(!(that.Filtered.indexOf(that.CustomersList[I]) > -1)) {
@@ -55,6 +53,12 @@ var Burlington = function() {
 
         };
 
+        // Filter by name / email
+        that.Filtered = jQuery.grep(that.Filtered , function (value) {
+                        return (value.full_name.toLowerCase().includes(that.Query.toLowerCase()) &&
+                        value.email.toLowerCase().includes(that.Query.toLowerCase())) ;
+        });
+
         FilteredListHTML    = '<tr>'
                                 + '<th>Customer ID</th>'
                                 + '<th>Name</th>'
@@ -63,20 +67,6 @@ var Burlington = function() {
                                 + '<th>Country<th>'
                                 + '<th>Phone<th>'
                                 + '</tr>';
-
-        // Filter by name / email
-        for (F in that.Filtered) {
-
-            if (!that.Filtered[F]['full_name'].toLowerCase().includes(that.Query.toLowerCase()) &&
-                !that.Filtered[F]['email'].toLowerCase().includes(that.Query.toLowerCase()) ) {
-
-                var index = that.Filtered.indexOf(that.Filtered[F]);
-
-                if (index > -1) {
-                    that.Filtered.splice(index, 1);
-                }
-            }
-        }
 
         for (F in that.Filtered) {
             FilteredListHTML    += '<tr>'
