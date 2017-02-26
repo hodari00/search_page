@@ -19,6 +19,18 @@ var Burlington = function() {
 
         for(I in that.CustomersList) {
 
+            console.log(that.CountriesFilter);
+
+            if (that.CountriesFilter.length <= 0 && that.CitiesFilter.length <= 0) {
+
+                if(!(that.Filtered.indexOf(that.CustomersList[I]) > -1)) {
+
+                    that.Filtered.push(that.CustomersList[I]);
+
+                }
+
+            }
+
             // Filter by Country
             for (C in that.CountriesFilter) {
 
@@ -78,7 +90,7 @@ var Burlington = function() {
         }
 
 
-        console.log(that.Filtered);
+        // console.log(that.Filtered);
 
         $('.TableWrapper table').html(FilteredListHTML);
 
