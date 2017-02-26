@@ -22,7 +22,7 @@ var Burlington = function() {
             // Filter by Country
             for (C in that.CountriesFilter) {
 
-                if(!(that.CustomersList[I] in that.Filtered) && 
+                if(!(that.Filtered.indexOf(that.CustomersList[I]) > -1) && 
                     that.CountriesFilter[C] == that.CustomersList[I]['country']) {
 
                     that.Filtered.push(that.CustomersList[I]);
@@ -30,16 +30,7 @@ var Burlington = function() {
                 }
             };
 
-            // Filter by City
-            for (K in that.CitiesFilter) {
-
-                if(!(that.CustomersList[I] in that.Filtered) && 
-                    that.CitiesFilter[K] == that.CustomersList[I]['city']) {
-
-                    that.Filtered.push(that.CustomersList[I]);
-
-                }
-            };
+            
 
         };
 
@@ -64,6 +55,22 @@ var Burlington = function() {
                     that.Filtered.splice(index, 1);
                 }
             }
+        }
+
+        for (F in that.Filtered) {
+            // Filter by City
+            for (K in that.CitiesFilter) {
+
+                if(that.CitiesFilter[K] != that.Filtered[F]['city']) {
+
+                    var index = that.Filtered.indexOf(that.Filtered[F]);
+
+                    if (index > -1) {
+                        that.Filtered.splice(index, 1);
+                    }
+
+                }
+            };
         }
 
         for (F in that.Filtered) {
